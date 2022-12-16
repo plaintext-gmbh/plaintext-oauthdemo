@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          demo:
+            issuer-uri: https://login.plaintext.ch/auth/realms/demo
+        registration:
+          demo:
+            redirect-uri: http://localhost:8080/login/oauth2/code/demo
+            scope: openid,email
+            client-id: demo
+            client-secret: YPWCHQMRCULufKs1cT13evlWhGQBWyZj
