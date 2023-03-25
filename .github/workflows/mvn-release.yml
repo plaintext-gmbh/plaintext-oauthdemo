@@ -50,6 +50,7 @@ jobs:
         if [ "${{ inputs.version }}" == "default" ]; then
           version=$(./get-release.sh)
         fi
+        echo "version=${version}" >> $GITHUB_ENV
         
         mvn versions:set -DnewVersion="${version}"
         mvn versions:commit
@@ -64,6 +65,7 @@ jobs:
         if [ "${{ inputs.next-snapshot }}" == "default" ]; then
           nextsnapshot=$(./get-next-snapshot.sh)
         fi
+        echo "nextsnapshot=${nextsnapshot}" >> $GITHUB_ENV
         
         mvn versions:set -DnewVersion="${nextsnapshot}"
         mvn versions:commit
@@ -84,5 +86,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag: ${{ inputs.version }}
-        name: Release ${{ inputs.version }}
+        tag: ${{ env.version }}
+        name: Release ${{ env.version }}
