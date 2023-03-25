@@ -7,5 +7,5 @@ pw: demo
 
 Start the demo with Docker: 
 ```
-docker run -p 8080:8080 ghcr.io/daniel-marthaler-plaintext-gmbh/plaintext-spring-oauth-blueprint:master
+docker run -p 8080:8080 ghcr.io/daniel-marthaler-plaintext-gmbh/plaintext-spring-oauth-blueprint:latest
 ```
