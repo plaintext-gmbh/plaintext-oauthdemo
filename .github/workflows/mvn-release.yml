@@ -60,16 +60,16 @@ jobs:
         
         mvn deploy
         
-        next-snapshot=${{ inputs.next-snapshot }}
+        nextsnapshot=${{ inputs.next-snapshot }}
         if [ "${{ inputs.next-snapshot }}" == "default" ]; then
-          next-snapshot=$(./get-next-snapshot.sh)
+          nextsnapshot=$(./get-next-snapshot.sh)
         fi
         
-        mvn versions:set -DnewVersion="${next-snapshot}"
+        mvn versions:set -DnewVersion="${nextsnapshot}"
         mvn versions:commit
         
         git add .
-        git commit -m "next snapshot: ${next-snapshot} [skip-ci]"
+        git commit -m "next snapshot: ${nextsnapshot} [skip-ci]"
         
         git push --tags
         git push
