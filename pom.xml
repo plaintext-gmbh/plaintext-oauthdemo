@@ -15,7 +15,7 @@
     <name>plaintext-spring-oauth-blueprint</name>
 
     <properties>
-        <java.version>20</java.version>
+        <java.version>18</java.version>
     </properties>
 
     <dependencies>
@@ -57,13 +57,6 @@
             <groupId>org.joinfaces</groupId>
             <artifactId>primefaces-spring-boot-starter</artifactId>
             <version>5.0.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
