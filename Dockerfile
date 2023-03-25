@@ -1,7 +1,6 @@
 FROM openjdk:20-jdk-slim
 
-ARG JAR_FILE=target/*oauthdemo*.jar
-COPY ${JAR_FILE} app.jar
+COPY "target/*oauth*.jar" "app.jar"
 
 ENTRYPOINT ["java",\
 "--add-opens=java.base/java.util=ALL-UNNAMED", \
