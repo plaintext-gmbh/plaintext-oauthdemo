@@ -48,7 +48,7 @@ jobs:
         
         version = ${{ inputs.version }}
         if [ "${{ inputs.version }}" == "default" ]; then
-          version = $(./get-version.sh)
+          version = $(./get-release.sh)
         fi
         
         mvn versions:set -DnewVersion=${ version }
