@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'release version: ex: 0.1.0'
+        description: 'release version: ex: 0.0.1'
         required: true
         type: string
         default: 'default'
       next-snapshot:
-        description: 'next snapshot version: ex: 0.2.0-SNAPSHOT'
+        description: 'next snapshot version: ex: 0.0.1-SNAPSHOT'
         required: true
         type: string
         default: 'default'
