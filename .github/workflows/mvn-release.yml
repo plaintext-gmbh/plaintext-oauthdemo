@@ -1,7 +1,7 @@
 name: 'mvn release'
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       version:
         description: 'release version: Ex: 0.1.0'
@@ -41,4 +41,3 @@ jobs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
