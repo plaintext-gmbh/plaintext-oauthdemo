@@ -39,6 +39,9 @@ jobs:
       id: release
       run: |
         
+        git config --global user.email "noreply-actions@github.com"
+        git config --global user.name "Github Actions"
+        
         mvn versions:set -DnewVersion=${{ inputs.version }}
         mvn versions:commit
         
