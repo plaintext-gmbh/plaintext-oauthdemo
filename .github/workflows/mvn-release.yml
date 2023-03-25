@@ -51,11 +51,11 @@ jobs:
           version=$(./get-release.sh)
         fi
         
-        mvn versions:set -DnewVersion=${ version }
+        mvn versions:set -DnewVersion="${version}"
         mvn versions:commit
         
         git add .
-        git commit -m "release version: ${{ inputs.version }} [skip-ci]"
+        git commit -m "release version: ${version} [skip-ci]"
         git tag ${{ inputs.version }}
         
         mvn deploy
@@ -65,11 +65,11 @@ jobs:
           next-snapshot=$(./get-next-snapshot.sh)
         fi
         
-        mvn versions:set -DnewVersion=${ next-snapshot }
+        mvn versions:set -DnewVersion="${next-snapshot}"
         mvn versions:commit
         
         git add .
-        git commit -m "next snapshot: ${{ inputs.next-snapshot }} [skip-ci]"
+        git commit -m "next snapshot: ${next-snapshot} [skip-ci]"
         
         git push --tags
         git push
