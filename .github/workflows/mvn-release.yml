@@ -55,6 +55,7 @@ jobs:
         mvn versions:set -DnewVersion="${version}"
         mvn versions:commit
         
+        echo "commit -> release version: ${version} [skip-ci]"
         git add .
         git commit -m "release version: ${version} [skip-ci]"
         git tag ${{ inputs.version }}
@@ -70,6 +71,7 @@ jobs:
         mvn versions:set -DnewVersion="${nextsnapshot}"
         mvn versions:commit
         
+        echo "commit -> next snapshot: ${nextsnapshot} [skip-ci]"
         git add .
         git commit -m "next snapshot: ${nextsnapshot} [skip-ci]"
         
