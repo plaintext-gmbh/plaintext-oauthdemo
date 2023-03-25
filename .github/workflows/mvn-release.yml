@@ -49,6 +49,8 @@ jobs:
         git commit -m "release version: ${{ inputs.version }} [skip-ci]"
         git tag ${{ inputs.version }}
         
+        mvn deploy
+        
         mvn versions:set -DnewVersion=${{ inputs.next-snapshot }}
         mvn versions:commit
         
