@@ -7,10 +7,12 @@ on:
         description: 'release version: ex: 0.1.0'
         required: true
         type: string
+        default: 'default'
       next-snapshot:
         description: 'next snapshot version: ex: 0.2.0-SNAPSHOT'
         required: true
         type: string
+        default: 'default'
 
 jobs:
 
@@ -42,7 +44,14 @@ jobs:
         git config --global user.email "noreply-actions@github.com"
         git config --global user.name "Github Actions"
         
-        mvn versions:set -DnewVersion=${{ inputs.version }}
+        chmod +x *.sh
+        
+        version = ${{ inputs.version }}
+        if [ "${{ inputs.version }}" == "default" ]; then
+          version = $(./get-version.sh)
+        fi
+        
+        mvn versions:set -DnewVersion=${ version }
         mvn versions:commit
         
         git add .
@@ -51,7 +60,12 @@ jobs:
         
         mvn deploy
         
-        mvn versions:set -DnewVersion=${{ inputs.next-snapshot }}
+        next-snapshot = ${{ inputs.next-snapshot }}
+        if [ "${{ inputs.next-snapshot }}" == "default" ]; then
+          next-snapshot  = $(./get-next-snapshot.sh)
+        fi
+        
+        mvn versions:set -DnewVersion=${ next-snapshot }
         mvn versions:commit
         
         git add .
