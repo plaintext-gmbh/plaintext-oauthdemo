@@ -6,5 +6,5 @@ current_version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdou
 # Increment the last version number
 next_version=$(echo "$current_version" | awk -F. '{$NF+=1; OFS="."; print}')
 snapshot_version="${next_version}-SNAPSHOT"
-
-echo "$snapshot_version"
+neuer_string=${snapshot_version// /\.}
+echo "neuer_string"
