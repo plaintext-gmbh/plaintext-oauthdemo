@@ -15,9 +15,7 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
     steps:
 
     - uses: actions/checkout@v3
@@ -28,16 +26,44 @@ jobs:
         java-version: '18'
         distribution: 'adopt'
 
-    - name: 'do the release'
+    - name: 'use the github cache for the local mvn repo'
+      id: cache
+      uses: actions/cache@v3.2.6
+      with:
+        path: ~/.m2/repository
+        key: localM2Repo
+        restore-keys: |
+          localM2Repo
+
+    - name: 'do the mv release and the git stuff'
       id: release
       run: |
         
         mvn versions:set -DnewVersion=${{ inputs.version }}
         mvn versions:commit
         
+        git add .
+        git commit -m "release version: ${{ inputs.version }} [skip-ci]"
+        git tag ${{ inputs.version }}
+        
         mvn versions:set -DnewVersion=${{ inputs.next-snapshot }}
         mvn versions:commit
+        
+        git add .
+        git commit -m "next snapshot: ${{ inputs.next-snapshot }} [skip-ci]"
+        
+        git push --tags
+        git push
 
       shell: bash
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: 'lets us kick the github release action'
+      id: gh-release
+      uses: ncipollo/release-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag: ${{ inputs.version }}
+        name: Release ${{ inputs.version }}
