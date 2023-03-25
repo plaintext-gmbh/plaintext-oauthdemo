@@ -58,7 +58,7 @@ jobs:
         echo "commit -> release version: ${version} [skip-ci]"
         git add .
         git commit -m "release version: ${version} [skip-ci]"
-        git tag ${{ inputs.version }}
+        git tag ${version}
         
         mvn deploy
         
