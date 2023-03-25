@@ -46,9 +46,9 @@ jobs:
         
         chmod +x *.sh
         
-        version = ${{ inputs.version }}
+        version=${{ inputs.version }}
         if [ "${{ inputs.version }}" == "default" ]; then
-          version = $(./get-release.sh)
+          version=$(./get-release.sh)
         fi
         
         mvn versions:set -DnewVersion=${ version }
@@ -60,9 +60,9 @@ jobs:
         
         mvn deploy
         
-        next-snapshot = ${{ inputs.next-snapshot }}
+        next-snapshot=${{ inputs.next-snapshot }}
         if [ "${{ inputs.next-snapshot }}" == "default" ]; then
-          next-snapshot  = $(./get-next-snapshot.sh)
+          next-snapshot=$(./get-next-snapshot.sh)
         fi
         
         mvn versions:set -DnewVersion=${ next-snapshot }
