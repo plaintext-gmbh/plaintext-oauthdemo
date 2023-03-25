@@ -1,4 +1,4 @@
-FROM openjdk:18.0.2-jdk-slim
+FROM openjdk:20-jdk-slim
 
 ARG JAR_FILE=target/*oauthdemo*.jar
 COPY ${JAR_FILE} app.jar

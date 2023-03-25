@@ -3,10 +3,14 @@
  */
 package ch.plaintext.oauthdemo;
 
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,16 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
  * @author daniel.marthaler@plaintext.ch
  * @since 2022
  */
-@RestController
+@Controller
 @Slf4j
-public class LoginController {
+@Scope("session")
+public class BackingBean {
 
     @Getter
     private OAuth2User user;
-    @GetMapping("/user.json")
-    public OAuth2User home(@AuthenticationPrincipal OAuth2User oauth2User) {
-        user = oauth2User;
-        return oauth2User;
+    @Autowired
+    private LoginController controller;
+
+    @PostConstruct
+    private void init() {
+        user = controller.getUser();
     }
 
 }

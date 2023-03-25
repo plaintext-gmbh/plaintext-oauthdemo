@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<h:head>
+    <title>Who I Am</title>
+</h:head>
+
+<h:outputScript>
+    history.pushState(null, null, '/index.jsf');
+</h:outputScript>
+
+<h:body id="entirePage">
+
+    <h:form id="fm" enctype="multipart/form-data">
+
+        <p:messages/>
+
+        <br/>
+        <p:fieldset toggleable="true" >
+            <p:panelGrid columns="1">
+                <p:outputLabel value=" given_name: #{backingBean.user.name}" size="30"/>
+                <p:outputLabel value=" Email: #{backingBean.user.attributes.email}" size="30"/>
+                <p:outputLabel value=" Email Verified: #{backingBean.user.attributes.email_verified}" size="30"/>
+                <p:outputLabel value=" ISS: #{backingBean.user.attributes.iss}" size="30"/>
+                <p:outputLabel value=" Auth Time: #{backingBean.user.attributes.auth_time}" size="30"/>
+            </p:panelGrid>
+        </p:fieldset>
+    </h:form>
+
+</h:body>
+
+</html>

@@ -4,4 +4,3 @@ Working Blueprint configured with Keycloak demo Realm on https://login.plaintext
 
 user: demo<br />
 pw: demo
-

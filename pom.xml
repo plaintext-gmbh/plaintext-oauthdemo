@@ -15,7 +15,7 @@
     <name>plaintext-spring-oauth-blueprint</name>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>20</java.version>
     </properties>
 
     <dependencies>
@@ -54,6 +54,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.joinfaces</groupId>
+            <artifactId>primefaces-spring-boot-starter</artifactId>
+            <version>5.0.4</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>RELEASE</version>
@@ -76,5 +82,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/daniel-marthaler-plaintext-gmbh/plaintext-spring-oauth-blueprint</url>
+        </repository>
+    </distributionManagement>
 
 </project>
