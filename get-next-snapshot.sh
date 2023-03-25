@@ -7,4 +7,4 @@ current_version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdou
 next_version=$(echo "$current_version" | awk -F. '{$NF+=1; OFS="."; print}')
 snapshot_version="${next_version}-SNAPSHOT"
 neuer_string=${snapshot_version// /\.}
-echo "neuer_string"
+echo "${neuer_string}"

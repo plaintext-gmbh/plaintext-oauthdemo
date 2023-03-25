@@ -6,4 +6,4 @@ current_version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdou
 # Remove the SNAPSHOT suffix and increment the last version number
 release_version=${current_version%-SNAPSHOT}
 neuer_string=${release_version// /\.}
-echo "neuer_string"
+echo "${neuer_string}"
