@@ -1,14 +1,14 @@
 name: 'mvn release'
-
+run-name: "release -> version: ${{ inputs.version }}, next-snapshot: ${{ inputs.next-snapshot }}"
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'release version: Ex: 0.1.0'
+        description: 'release version: ex: 0.1.0'
         required: true
         type: string
       next-snapshot:
-        description: 'next snapshot version: Ex: 0.2.0-SNAPSHOT'
+        description: 'next snapshot version: ex: 0.2.0-SNAPSHOT'
         required: true
         type: string
 
