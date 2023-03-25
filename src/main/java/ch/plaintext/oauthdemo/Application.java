@@ -4,8 +4,11 @@
 package ch.plaintext.oauthdemo;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.SystemUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.io.IOException;
 
 /**
  * @author daniel.marthaler@plaintext.ch
@@ -15,8 +18,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 
+    private static String URL = "http://localhost:8080";
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+
+        if (SystemUtils.IS_OS_MAC) {
+            try {
+                Runtime.getRuntime().exec("open " + URL);
+            } catch (IOException e) {
+                log.error(e.getMessage(), e);
+            }
+        }
     }
 
 }

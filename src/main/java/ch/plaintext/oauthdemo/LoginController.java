@@ -20,4 +20,5 @@ public class LoginController {
     public OAuth2User home(@AuthenticationPrincipal OAuth2User oauth2User) {
         return oauth2User;
     }
+
 }
