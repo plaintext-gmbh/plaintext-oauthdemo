@@ -94,7 +94,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/daniel-marthaler-plaintext-gmbh/plaintext-spring-oauth-blueprint</url>
+            <url>https://maven.pkg.github.com/daniel-marthaler/plaintext-spring-oauth-blueprint</url>
         </repository>
     </distributionManagement>
 
