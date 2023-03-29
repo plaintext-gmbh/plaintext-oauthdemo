@@ -18,7 +18,8 @@ import java.io.IOException;
 @SpringBootApplication
 public class Application {
 
-    private static String URL = "http://localhost:8080";
+    private static final String URL = "http://localhost:8080";
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
 

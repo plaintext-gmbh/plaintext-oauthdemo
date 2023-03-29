@@ -18,6 +18,11 @@
 
     <h:form id="fm" enctype="multipart/form-data">
 
+        <p:blockUI id="blockIt" widgetVar="blockIt" block="entirePage">
+            Bitte warten...<br/>
+            <p:graphicImage value="images/ajax-loader1.gif"/>
+        </p:blockUI>
+
         <p:messages/>
 
         <br/>
@@ -28,6 +33,16 @@
                 <p:outputLabel value=" Email Verified: #{backingBean.user.attributes.email_verified}" size="30"/>
                 <p:outputLabel value=" ISS: #{backingBean.user.attributes.iss}" size="30"/>
                 <p:outputLabel value=" Auth Time: #{backingBean.user.attributes.auth_time}" size="30"/>
+            </p:panelGrid>
+        </p:fieldset>
+
+        <p:fieldset toggleable="true" legend="Upload File" >
+            <p:panelGrid columns="2">
+                <p:fileUpload value="#{fileBackingBean.file}" label="Select File here and ..." skinSimple="true"
+                              mode="simple" dragDropSupport="false"/>
+                <p:commandButton action="#{fileBackingBean.upload()}" update="fm" ajax="false"
+                                 value="... click upload" onstart="PF('blockIt').show()"
+                                 oncomplete="PF('blockIt').hide()"/>
             </p:panelGrid>
         </p:fieldset>
     </h:form>

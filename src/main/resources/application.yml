@@ -13,3 +13,8 @@ spring:
             scope: openid,email
             client-id: demo
             client-secret: YPWCHQMRCULufKs1cT13evlWhGQBWyZj
+joinfaces:
+  primefaces:
+    cacheProvider: org.primefaces.cache.DefaultCacheProvider
+    uploader: native
+    theme: saga
