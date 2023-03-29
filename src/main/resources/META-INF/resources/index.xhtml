@@ -4,6 +4,7 @@
 <html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags"
       xmlns="http://www.w3.org/1999/xhtml">
 
 <h:head>
@@ -18,15 +19,13 @@
 
     <h:form id="fm" enctype="multipart/form-data">
 
-        <p:blockUI id="blockIt" widgetVar="blockIt" block="entirePage">
-            Bitte warten...<br/>
-            <p:graphicImage value="images/ajax-loader1.gif"/>
-        </p:blockUI>
-
         <p:messages/>
 
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <br/>
-        <p:fieldset toggleable="true" >
+
+
+        <p:fieldset toggleable="true" legend="Me myself and i">
             <p:panelGrid columns="1">
                 <p:outputLabel value=" given_name: #{backingBean.user.name}" size="30"/>
                 <p:outputLabel value=" Email: #{backingBean.user.attributes.email}" size="30"/>
@@ -35,16 +34,30 @@
                 <p:outputLabel value=" Auth Time: #{backingBean.user.attributes.auth_time}" size="30"/>
             </p:panelGrid>
         </p:fieldset>
+        <br/>
 
-        <p:fieldset toggleable="true" legend="Upload File" >
-            <p:panelGrid columns="2">
-                <p:fileUpload value="#{fileBackingBean.file}" label="Select File here and ..." skinSimple="true"
-                              mode="simple" dragDropSupport="false"/>
-                <p:commandButton action="#{fileBackingBean.upload()}" update="fm" ajax="false"
-                                 value="... click upload" onstart="PF('blockIt').show()"
-                                 oncomplete="PF('blockIt').hide()"/>
-            </p:panelGrid>
+        <p:fieldset toggleable="true" legend="Roles and stuff">
+
+            <p:outputLabel value=" Has SCOPE_email: #{backingBean.hasAuth('SCOPE_email')}" size="30"/><br/>
+            <p:outputLabel value=" Has SCOPE_x: #{backingBean.hasAuth('SCOPE_x')}" size="30"/>
+
         </p:fieldset>
+        <br/>
+
+        <p:fieldset toggleable="true" legend="Store file --> ">
+
+            <p:fileUpload  update="fm" listener="#{fileBackingBean.uploadFile}" label="Drag and drop file here ..."   mode="advanced" auto="true" dragDropSupport="true" rendered="#{!fileBackingBean.isLoaded()}"/>
+
+            <p:remoteCommand name="fileUploadCallback" action="#{fileBackingBean.upload()}" />
+            <p:commandButton value="download" icon="pi pi-arrow-down" update="fm"  rendered="#{fileBackingBean.isLoaded()}">
+                <p:fileDownload value="#{fileBackingBean.file}"/>
+            </p:commandButton>
+
+        </p:fieldset>
+        <br/>
+
+
+
     </h:form>
 
 </h:body>

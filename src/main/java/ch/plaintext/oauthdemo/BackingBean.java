@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 
@@ -28,6 +29,15 @@ public class BackingBean {
     @PostConstruct
     private void init() {
         user = controller.getUser();
+    }
+
+    public boolean hasAuth(String name){
+        for(GrantedAuthority auth : user.getAuthorities()){
+            if(auth.getAuthority().equals(name)){
+                return true;
+            }
+        }
+        return  false;
     }
 
 }

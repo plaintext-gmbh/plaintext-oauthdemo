@@ -14,6 +14,9 @@ spring:
             client-id: demo
             client-secret: YPWCHQMRCULufKs1cT13evlWhGQBWyZj
 joinfaces:
+  jsf:
+    stages:
+      project-stage: Development
   primefaces:
     cacheProvider: org.primefaces.cache.DefaultCacheProvider
     uploader: native

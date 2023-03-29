@@ -3,12 +3,18 @@
  */
 package ch.plaintext.oauthdemo;
 
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 /**
@@ -18,19 +24,28 @@ import java.io.IOException;
 @Controller
 @Slf4j
 @Data
+@Scope("session")
 public class FileBackingBean {
 
-    private UploadedFile file;
+    private byte[] fileContent;
+    private String fileName;
+    private String type;
+    private boolean availabel = false;
 
-    public void upload() {
-        if (file != null) {
-            log.info(file.getFileName());
-            try {
-                String in = IOUtils.toString(file.getInputStream(), "cp1252");
-                log.info("Size:" + in.getBytes().length);
-            } catch (IOException e) {
-                log.error(e.getMessage());
-            }
-        }
+    public boolean isLoaded() {
+        return availabel;
     }
+
+    public StreamedContent getFile() {
+        availabel = false;
+        return  DefaultStreamedContent.builder().name(fileName).contentType(type).stream(() -> new ByteArrayInputStream(fileContent)).build();
+    }
+
+    public void uploadFile(FileUploadEvent event) {
+        fileContent =  event.getFile().getContent();
+        fileName = event.getFile().getFileName();
+        type = event.getFile().getContentType();
+        availabel = true;
+    }
+
 }
