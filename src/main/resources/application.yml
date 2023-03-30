@@ -10,9 +10,9 @@ spring:
         registration:
           demo:
             redirect-uri: http://localhost:8080/login/oauth2/code/demo
-            scope: openid,email
+            scope: openid
             client-id: demo
-            client-secret: YPWCHQMRCULufKs1cT13evlWhGQBWyZj
+            client-secret: URLCtcDI7L3HIhZbcmKKVfP1R4NclRZl
 joinfaces:
   jsf:
     stages:

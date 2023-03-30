@@ -36,6 +36,12 @@ public class LoginController {
 
     }
 
+    @GetMapping("/user.json")
+    public OAuth2User home(@AuthenticationPrincipal OAuth2User oauth2User) {
+        user = oauth2User;
+        return oauth2User;
+    }
+
 
 
 }
