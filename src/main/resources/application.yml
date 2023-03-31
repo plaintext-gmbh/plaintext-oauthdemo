@@ -21,3 +21,7 @@ joinfaces:
     cacheProvider: org.primefaces.cache.DefaultCacheProvider
     uploader: native
     theme: saga
+
+logging:
+  level:
+    root: INFO

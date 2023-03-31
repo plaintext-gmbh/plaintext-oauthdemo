@@ -3,9 +3,12 @@
  */
 package ch.plaintext.oauthdemo;
 
+import com.nimbusds.jose.shaded.gson.internal.LinkedTreeMap;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,6 +25,14 @@ import org.springframework.stereotype.Controller;
 public class BackingBean {
 
     @Getter
+    @Setter
+    private String checkRole;
+
+    @Getter
+    @Setter
+    private Boolean hasRole = false;
+
+    @Getter
     private OAuth2User user;
     @Autowired
     private LoginController controller;
@@ -31,13 +42,15 @@ public class BackingBean {
         user = controller.getUser();
     }
 
-    public boolean hasAuth(String name){
-        for(GrantedAuthority auth : user.getAuthorities()){
-            if(auth.getAuthority().equals(name)){
-                return true;
-            }
+    public void hasAuth(){
+
+        String roles = StringUtils.substringBetween(user.toString(),"roles=[","]");
+        if(roles.contains(checkRole)){
+            this.hasRole = true;
+        } else {
+            hasRole = false;
         }
-        return  false;
+
     }
 
 }

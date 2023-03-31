@@ -38,8 +38,6 @@
 
         <p:fieldset toggleable="true" legend="Roles and stuff">
 
-            <p:outputLabel value=" Has SCOPE_email: #{backingBean.hasAuth('SCOPE_email')}" size="30"/><br/>
-            <p:outputLabel value=" Has SCOPE_x: #{backingBean.hasAuth('SCOPE_x')}" size="30"/>
 
         </p:fieldset>
         <br/>
@@ -54,6 +52,21 @@
             </p:commandButton>
 
         </p:fieldset>
+        <br/>
+        <p:fieldset toggleable="true" legend="Has Role (demo-client-role)">
+
+
+                <p:outputLabel for="username1" styleClass="block">Role</p:outputLabel> <br/>
+                <p:inputText value= "#{backingBean.checkRole}" id="username1" /> <br/>
+
+                 <p:outputLabel  styleClass="block">#{backingBean.hasRole}</p:outputLabel>
+            <br/>
+            <br/>
+            <p:commandButton value="Check"  icon="pi pi-arrow-down" actionListener="#{backingBean.hasAuth()}" update="fm"  >
+            </p:commandButton>
+
+        </p:fieldset>
+
         <br/>
 
 
