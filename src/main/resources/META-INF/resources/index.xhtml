@@ -24,7 +24,6 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <br/>
 
-
         <p:fieldset toggleable="true" legend="Me myself and i">
             <p:panelGrid columns="1">
                 <p:outputLabel value=" given_name: #{backingBean.user.name}" size="30"/>
@@ -38,16 +37,17 @@
 
         <p:fieldset toggleable="true" legend="Roles and stuff">
 
-
         </p:fieldset>
         <br/>
 
         <p:fieldset toggleable="true" legend="Store file --> ">
 
-            <p:fileUpload  update="fm" listener="#{fileBackingBean.uploadFile}" label="Drag and drop file here ..."   mode="advanced" auto="true" dragDropSupport="true" rendered="#{!fileBackingBean.isLoaded()}"/>
+            <p:fileUpload update="fm" listener="#{fileBackingBean.uploadFile}" label="Drag and drop file here ..."
+                          mode="advanced" auto="true" dragDropSupport="true" rendered="#{!fileBackingBean.isLoaded()}"/>
 
-            <p:remoteCommand name="fileUploadCallback" action="#{fileBackingBean.upload()}" />
-            <p:commandButton value="download" icon="pi pi-arrow-down" update="fm"  rendered="#{fileBackingBean.isLoaded()}">
+            <p:remoteCommand name="fileUploadCallback" action="#{fileBackingBean.upload()}"/>
+            <p:commandButton value="download" icon="pi pi-arrow-down" update="fm"
+                             rendered="#{fileBackingBean.isLoaded()}">
                 <p:fileDownload value="#{fileBackingBean.file}"/>
             </p:commandButton>
 
@@ -55,21 +55,21 @@
         <br/>
         <p:fieldset toggleable="true" legend="Has Role (demo-client-role)">
 
+            <p:outputLabel for="username1" styleClass="block">Role</p:outputLabel>
+            <br/>
+            <p:inputText value="#{backingBean.checkRole}" id="checkRole"/>
+            <br/>
+            <p:outputLabel styleClass="block">#{backingBean.hasRole}</p:outputLabel>
 
-                <p:outputLabel for="username1" styleClass="block">Role</p:outputLabel> <br/>
-                <p:inputText value= "#{backingBean.checkRole}" id="username1" /> <br/>
-
-                 <p:outputLabel  styleClass="block">#{backingBean.hasRole}</p:outputLabel>
             <br/>
             <br/>
-            <p:commandButton value="Check"  icon="pi pi-arrow-down" actionListener="#{backingBean.hasAuth()}" update="fm"  >
+            <p:commandButton value="Check" icon="pi pi-arrow-down" actionListener="#{backingBean.hasAuth()}"
+                             update="fm">
             </p:commandButton>
 
         </p:fieldset>
 
         <br/>
-
-
 
     </h:form>
 

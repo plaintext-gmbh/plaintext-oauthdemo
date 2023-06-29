@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * @author daniel.marthaler@plaintext.ch
- * @since 2022
+ * @since 2023
  */
 @Slf4j
 @SpringBootApplication

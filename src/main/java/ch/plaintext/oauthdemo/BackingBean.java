@@ -17,7 +17,7 @@ import org.springframework.stereotype.Controller;
 
 /**
  * @author daniel.marthaler@plaintext.ch
- * @since 2022
+ * @since 2023
  */
 @Controller
 @Slf4j
@@ -50,7 +50,6 @@ public class BackingBean {
         } else {
             hasRole = false;
         }
-
     }
 
 }
