@@ -1,4 +1,4 @@
-FROM openjdk:20-jdk-slim
+FROM openjdk:21-jdk-slim
 
 COPY "target/*oauth*.jar" "app.jar"
 
