@@ -34,7 +34,7 @@ jobs:
 
       - name: 'use the github cache for the local mvn repo'
         id: cache
-        uses: actions/cache@v4.0.2
+        uses: actions/cache@v4.2.0
         with:
           path: ~/.m2/repository
           key: localM2Repo
